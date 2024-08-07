@@ -1,0 +1,580 @@
+#+TITLE: How to Think Like a Computer Scientist's exercises
+
+This repository contains resolutions for the exercises of the book [[http://www.openbookproject.net/thinkcs/python/][How to Think Like a Computer Scientist]].
+
+* Chapter 1
+
+** 1
+
+I went to the supremarket.
+
+Was to i supermarket the.
+
+** 2
+
+#+begin_src sh
+  >>> 1 + 2
+  3
+  >>> 63 + 6
+  69
+  >>> 42 * 10
+  420
+#+end_src
+
+** 3
+
+#+begin_src sh
+  >>> 2 / 0
+  Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  ZeroDivisionError: division by zero
+  >>> print)"something(
+    File "<stdin>", line 1
+      print)"something(
+  ^
+  SyntaxError: unmatched ')'
+#+end_src
+
+** 4
+
+When using the ~print~ function, quotes aren't part of the output, the function takes a string and outputs its characters. When just typing the string, if in a script, nothing would be outputed. Since we're in the interpreter, it returns the result of the expression passed, in this case only a string, so the quotes are included to indicates the text is a string.
+
+#+begin_src sh
+  >>> print("hello")
+  hello
+  >>> "hello"
+  'hello'
+#+end_src
+
+** 5
+
+If there was a object named ~cheese~ this error wouldn't appear.
+
+#+begin_src sh
+  >>> cheese
+  Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  NameError: name 'cheese' is not defined
+#+end_src
+
+** 6
+
+When you type the expression ~6 + 4 * 9~ in the interpreter it returns ~42~. If you just put the same expression in a file, it will be evaluated but not outputed, to that you'll need to ~print~ it.
+
+* Chapter 2
+
+** 1
+
+#+begin_src python
+  a = "All"
+  b = "work"
+  c = "and"
+  d = "no"
+  e = "play"
+  f = "makes"
+  g = "Jack"
+  h = "a"
+  i = "dull"
+  j = "boy"
+
+  print(a + b + c + d + e + f + g + h + i + j)
+#+end_src
+
+** 2
+
+#+begin_src python
+  6 * (1 - 2)
+#+end_src
+
+** 3
+
+The line is ignored
+
+** 4
+
+#+begin_src python
+  bruce = 6
+#+end_src
+
+** 5
+
+#+begin_src python
+  p = 10000
+  n = 12
+  r = .08
+  t = int(input("Years: "))
+
+  a = p * (1 + (r / n )) ** (n * t)
+
+  print(a)
+#+end_src
+
+** 6
+
+When trying to get the remainder of 7 / 0 we get a runtime error because the computer (and no one as far as i know) can divide by 0.
+
+** 7
+
+#+begin_src python
+  hour = 14
+  wait = 51
+
+  alarm_off = hour + (wait % 24)
+  print(alarm_off)
+#+end_src
+
+** 8
+
+#+begin_src python
+  hour = int(input("Time now (hour):"))
+  wait = int(input("Alarm wait: "))
+
+  alarm_off = hour + (wait % 24)
+  print(alarm_off)
+#+end_src
+
+* Chapter 3
+
+** 1
+
+#+begin_src python
+  for i in range(100):
+      print("We like Python's turtles!")
+#+end_src
+
+** 2
+
+- Atrributes
+  - color
+  - size
+  - material
+- Methods
+  - call
+  - surf the web
+  - take pictures
+
+** 3
+
+#+begin_src python
+  months = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"]
+
+  for month in months:
+      print("One of the months of the year is " + month)
+#+end_src
+
+** 4
+
+Tess is now heading 45 degrees.
+
+** 5
+
+*** a
+
+#+begin_src python
+  for n in xs:
+      print(n)
+#+end_src
+
+*** b
+
+#+begin_src python
+  for n in xs:
+      print(n, n ** 2)
+#+end_src
+
+*** c
+
+#+begin_src python
+  total = 0
+  for n in xs:
+      total = total + n
+      print(total)
+#+end_src
+
+*** d
+
+#+begin_src python
+  product = 1
+  for n in xs:
+      product = product * n
+      print(product)
+#+end_src
+
+** 6
+
+#+begin_src python
+  import turtle
+
+  def draw_polygon(t, n, x):
+      """ Uses turtle t to draw a polygon with n sides of x units """
+      angle = 360 / n
+
+      for i in range(n):
+          t.forward(x)
+          t.left(angle)
+
+          
+  t = turtle.Turtle()
+  wn = turtle.Screen()
+
+  # triangle
+  draw_polygon(t, 3, 100)
+  draw_polygon(t, 4, 100)
+  draw_polygon(t, 6, 100)
+  draw_polygon(t, 8, 100)
+
+
+  wn.mainloop()
+#+end_src
+
+** 7
+
+#+begin_src python
+  import turtle
+
+  def path(t, x, angles):
+      """ Uses turtle t to turn angle in angles before walking x units """
+      for angle in angles:
+          t.left(angle)
+          t.forward(x)
+
+  angles = [160, -43, 270, -97, -43, 200, -940, 17, -86]
+
+  pirate = turtle.Turtle()
+  wn = turtle.Screen()
+
+  path(pirate, 100, angles)
+
+  wn.mainloop()
+#+end_src
+
+** 8
+
+#+begin_src python
+  import turtle
+
+  def path(t, x, angles):
+      """ Uses turtle t to turn angle in angles before walking x units, returns final angle """
+      final = 0
+      for angle in angles:
+          final = final + angle
+          t.left(angle)
+          t.forward(x)
+
+      final = final % 360
+      
+      return final
+
+  angles = [160, -43, 270, -97, -43, 200, -940, 17, -86]
+
+  pirate = turtle.Turtle()
+  wn = turtle.Screen()
+
+  print(path(pirate, 100, angles))
+
+  wn.mainloop()
+#+end_src
+
+** 9
+
+360 / 18 = 20
+
+** 10
+
+#+begin_src python
+  import turtle          # imports turtle module, no output
+  wn = turtle.Screen()   # creates a window
+  tess = turtle.Turtle() # creates a turtle
+  tess.right(90)         # turns down  
+  tess.left(3600)        # turns arround 10 times
+  tess.right(-90)        # face east again
+  tess.speed(10)         # set speed to 10
+  tess.left(3600)        # turns arround 10 times, faster
+  tess.speed(0)          # set speed to 0
+  tess.left(3645)        # turns arround 10 times, and 45 degrees left
+  tess.forward(-100)     # go backwards 100 units
+#+end_src
+
+** 11
+
+#+begin_src python
+  import turtle
+
+  t = turtle.Turtle()
+  wn = turtle.Screen()
+
+  lines = 5
+  angle = (360 * 2) / 5
+
+  t.speed(1)
+  t.left(angle)
+  for line in range(lines):
+      t.forward(100)
+      t.left(angle)
+
+  wn.mainloop()
+#+end_src
+
+** 12
+
+#+begin_src python
+  import turtle
+
+  t = turtle.Turtle()
+  wn = turtle.Screen()
+  angle = 360 / 12
+
+  wn.bgcolor("lightgreen")
+
+  t.shape("turtle")
+  t.pensize("3")
+  t.color("blue")
+
+  t.penup()
+  t.stamp()
+
+  for i in range(12):
+      t.forward(100)
+      t.pendown()
+      t.forward(20)
+      t.penup()
+      t.forward(20)
+      t.stamp()
+      t.backward(140)
+      t.left(angle)
+
+  wn.mainloop()
+#+end_src
+
+** 13
+
+~<class 'turtle.Turtle'>~
+
+** 14
+
+A /bale/?
+
+** 15
+
+The collective noun of python is a /bed/? Python isn't a viper nor venomous.
+
+* Chapter 4
+
+A lot of this chapter exercises will use the following functions:
+
+#+begin_src python
+  import turtle
+
+  def make_turtle(color, size):
+      t = turtle.Turtle()
+      t.color(color)
+      t.pensize(size)
+
+      return t
+
+  def make_window(color, title):
+      wn = turtle.Screen()
+      wn.bgcolor(color)
+
+      return wn
+#+end_src
+
+** 1
+
+#+begin_src python
+  def draw_square(t, x):
+      for i in range(4):
+          t.forward(x)
+          t.left(90)
+
+  wn = make_window("black", "Canvas")
+  t  = make_turtle("pink", 3)
+  side  = 20
+
+  for i in range(5):
+      draw_square(t, side)
+      t.penup()
+      t.forward(2*x)
+      t.pendown()
+
+  wn.mainloop()
+#+end_src
+
+** 2
+
+#+begin_src python
+  def draw_square(t, x):
+      for i in range(4):
+          t.forward(x)
+          t.left(90)
+
+  def space_to_next(t, spc):
+      t.penup()
+      for i in range(2):
+          t.right(90)
+          t.forward(spc)
+          t.left(180)
+          t.pendown()
+          
+  wn = make_window("black", "Canvas")
+  t  = make_turtle("pink", 3)
+
+  side  = 20
+  spc   = 10
+
+  for i in range(side, side*5, side):
+      draw_square(t, i)
+      space_to_next(t, spc)
+#+end_src
+
+** 3
+
+#+begin_src python
+  def draw_poly(t, x, sz):
+      a = 360 / x
+
+      for i in range(x):
+          t.forward(sz)
+          t.left(a)
+
+
+  wn = make_window("black", "Canvas")
+  t  = make_turtle("pink", 3)
+
+  draw_poly(t, 8, 50)
+#+end_src
+
+** 4
+
+#+begin_src python
+  def draw_poly(t, x, sz):
+      a = 360 / x
+
+      for i in range(x):
+          t.forward(sz)
+          t.left(a)
+
+
+  wn = make_window("black", "Canvas")
+  t  = make_turtle("pink", 3)
+
+  x = 20
+  for i in range(x):
+      draw_poly(t, 4, 50)
+      t.left(360/x)
+
+  wn.mainloop()
+#+end_src
+
+** 5
+
+#+begin_src python
+  def draw_spiral(t, a, x):
+      t.right(a)
+      for i in range(1, x+1):
+          t.forward(i*5)
+          t.right(a)
+          
+
+  wn    = make_window("lightgreen", "Canvas")
+  t     = make_turtle("blue", 3)
+
+  a = 90
+  x = 100
+  t.speed(10)
+
+  draw_spiral(t, a, x)
+  t.penup()
+  t.setpos(0,0)
+  t.left(a)
+  t.forward(x*10)
+  t.pendown()
+  a = 89
+  draw_spiral(t, a, x)
+
+
+  wn.mainloop()
+#+end_src
+
+** 6
+#+begin_src python
+  def draw_poly(t, x, sz):
+      a = 360 / x
+
+      for i in range(x):
+          t.forward(sz)
+          t.left(a)
+
+  def draw_equitriangle(t, sz):
+      draw_poly(t, 3, sz)
+
+          
+  wn = make_window("black", "Canvas")
+  t  = make_turtle("pink", 3)
+
+  draw_equitriangle(t, 100)
+
+  wn.mainloop()
+#+end_src
+
+** 7
+
+#+begin_src python
+  def sum_to(n):
+      """ Returns sum of all numbers up and including n """
+      result = 0
+      for i in range(1, n+1):
+          result += i
+
+      return result
+
+  print(sum_to(10))
+#+end_src
+
+** 8
+
+#+begin_src python
+  def area_of_circle(r):
+      return 3.14 * r ** 2
+#+end_src
+
+** 9
+
+#+begin_src python
+  def draw_star(t, sz):
+      for i in range(5):
+          t.forward(100)
+          t.right(144)
+          
+  wn = make_window("black", "Canvas")
+  t  = make_turtle("pink", 3)
+
+  draw_star(t, 100)
+
+  wn.mainloop()
+#+end_src
+
+** 10
+
+#+begin_src python
+  def star_space(t):
+      t.penup()
+      t.forward(350)
+      t.right(144)
+      t.pendown()
+      
+  def draw_star(t, sz):
+      for i in range(5):
+          t.forward(100)
+          t.right(144)
+          
+  wn = make_window("black", "Canvas")
+  t  = make_turtle("pink", 3)
+
+  for i in range(5):
+      draw_star(t, 100)
+      star_space(t)
+
+  wn.mainloop()
+#+end_src
