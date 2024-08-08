@@ -831,7 +831,7 @@ A lot of this chapter exercises will use the following functions:
       else:
           t.fillcolor("red")
 
-      
+        
       t.begin_fill()
       t.left(90)
       t.forward(h)
@@ -843,15 +843,15 @@ A lot of this chapter exercises will use the following functions:
           t.pendown()
       else:
           t.write(h)
-          t.right(90)
-          t.forward(40)
-          t.right(90)
-          t.forward(h)
-          t.left(90)
-          t.end_fill()
-          t.penup()
-          t.forward(10)
-          t.pendown()
+      t.right(90)
+      t.forward(40)
+      t.right(90)
+      t.forward(h)
+      t.left(90)
+      t.end_fill()
+      t.penup()
+      t.forward(10)
+      t.pendown()
 
 
   t  = make_turtle("white", 3)
@@ -859,7 +859,7 @@ A lot of this chapter exercises will use the following functions:
 
   for i in range(-50, 250, 50):
       draw_bar(t, i)
-
+      
   wn.mainloop()
 #+end_src
 
