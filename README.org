@@ -578,3 +578,315 @@ A lot of this chapter exercises will use the following functions:
 
   wn.mainloop()
 #+end_src
+
+* Chapter 5
+
+** 1
+
+#+begin_src python
+  def daynum_to_str(day):
+      if day == 0:
+          return "Sunday"
+      elif day == 1:
+          return "Monday"
+      elif day == 2:
+          return "Tuesday"
+      elif day == 3:
+          return "Wednesday"
+      elif day == 4:
+          return "Thursday"
+      elif day == 5:
+          return "Friday"
+      elif day == 6:
+          return "Saturday"
+      else:
+          return "Invalid day number!"
+
+
+  for i in range(7):
+      print(daynum_to_str(i))
+#+end_src
+
+** 2
+
+#+begin_src python
+  def daynum_to_str(day):
+      if day == 0:
+          return "Sunday"
+      elif day == 1:
+          return "Monday"
+      elif day == 2:
+          return "Tuesday"
+      elif day == 3:
+          return "Wednesday"
+      elif day == 4:
+          return "Thursday"
+      elif day == 5:
+          return "Friday"
+      elif day == 6:
+          return "Saturday"
+      else:
+          return "Invalid day number!"
+
+  def after_wait(start, days):
+      return daynum_to_str((start + days) % 7)
+
+
+
+  print(after_wait(3, 137))
+#+end_src
+
+** 3
+
+*** 3.1
+
+~a <= b~
+
+*** 3.2
+
+~a < b~
+
+*** 3.3
+
+~a < 18 or day != 3~
+
+*** 3.4
+
+~a < 18 or day == 3~
+
+** 4
+
+*** 4.1
+
+~True~
+
+*** 4.2
+
+~False~
+
+*** 4.3
+
+~False~
+
+*** 4.4
+
+~False~
+
+** 5
+
+| p | q | r | (not (p and q)) or r |
+|---+---+---+----------------------|
+| F | F | F | T                    |
+| F | F | T | T                    |
+| F | T | F | T                    |
+| F | T | T | T                    |
+| T | F | F | T                    |
+| T | F | T | T                    |
+| T | T | F | F                    |
+| T | T | T | T                    |
+
+** 6
+
+#+begin_src python
+  def mark_to_grade(mark):
+      if mark < 40:
+          return "F3"
+      elif mark >= 40 and mark < 45:
+          return "F2"
+      elif mark >= 45 and mark < 50:
+          return "F1 Supp"
+      elif mark >= 50 and mark < 60:
+          return "Third"
+      elif mark >= 60 and mark < 70:
+          return "Second"
+      elif mark >= 70 and mark < 75:
+          return "Upper Second"
+      else:
+          return "First"
+
+  xs = [83, 75, 74.9, 70, 69.9, 65, 60, 59.9, 55, 50,
+        49.9, 45, 44.9, 40, 39.9, 2, 0]
+
+  for i in xs:
+      print(mark_to_grade(i))
+#+end_src
+
+** 7
+
+#+begin_src python
+  import turtle
+
+  def make_turtle(color, size):
+      t = turtle.Turtle()
+      t.color(color)
+      t.pensize(size)
+
+      return t
+
+  def make_window(color, title):
+      wn = turtle.Screen()
+      wn.bgcolor(color)
+
+      return wn
+
+  def draw_bar(t, h):
+
+      t.begin_fill()
+      t.left(90)
+      t.forward(h)
+      t.write(h)
+      t.right(90)
+      t.forward(40)
+      t.right(90)
+      t.forward(h)
+      t.left(90)
+      t.end_fill()
+      t.penup()
+      t.forward(10)
+      t.pendown()
+
+
+  t  = make_turtle("green", 3)
+  wn = make_window("black", "Bars")
+
+  draw_bar(t, 42)
+
+  wn.mainloop()
+#+end_src
+
+** 8
+
+#+begin_src python
+  import turtle
+
+  def make_turtle(color, size):
+      t = turtle.Turtle()
+      t.color(color)
+      t.pensize(size)
+
+      return t
+
+  def make_window(color, title):
+      wn = turtle.Screen()
+      wn.bgcolor(color)
+
+      return wn
+
+  def draw_bar(t, h):
+      if h < 100:
+          t.fillcolor("green")
+      elif h >= 100 and h < 200:
+          t.fillcolor("yellow")
+      else:
+          t.fillcolor("red")
+
+      
+      t.begin_fill()
+      t.left(90)
+      t.forward(h)
+      t.write(h)
+      t.right(90)
+      t.forward(40)
+      t.right(90)
+      t.forward(h)
+      t.left(90)
+      t.end_fill()
+      t.penup()
+      t.forward(10)
+      t.pendown()
+
+
+  t  = make_turtle("white", 3)
+  wn = make_window("black", "Bars")
+
+  for i in range(50, 250, 50):
+      draw_bar(t, i)
+
+  wn.mainloop()
+#+end_src
+
+** 9
+
+#+begin_src python
+  import turtle
+
+  def make_turtle(color, size):
+      t = turtle.Turtle()
+      t.color(color)
+      t.pensize(size)
+
+      return t
+
+  def make_window(color, title):
+      wn = turtle.Screen()
+      wn.bgcolor(color)
+
+      return wn
+
+  def draw_bar(t, h):
+      if h < 100:
+          t.fillcolor("green")
+      elif h >= 100 and h < 200:
+          t.fillcolor("yellow")
+      else:
+          t.fillcolor("red")
+
+      
+      t.begin_fill()
+      t.left(90)
+      t.forward(h)
+      if h < 0:
+          t.penup()
+          t.backward(20)
+          t.write(h)
+          t.forward(20)
+          t.pendown()
+      else:
+          t.write(h)
+          t.right(90)
+          t.forward(40)
+          t.right(90)
+          t.forward(h)
+          t.left(90)
+          t.end_fill()
+          t.penup()
+          t.forward(10)
+          t.pendown()
+
+
+  t  = make_turtle("white", 3)
+  wn = make_window("black", "Bars")
+
+  for i in range(-50, 250, 50):
+      draw_bar(t, i)
+
+  wn.mainloop()
+#+end_src
+
+** 10
+
+#+begin_src python
+  def find_hypot(a, b):
+    return (a**2 + b**2) ** 0.5
+#+end_src
+
+** 11
+
+#+begin_src python
+  def is_rightangled(a, b, c):
+      return (a**2 + b**2) == c**2
+#+end_src
+
+** 12
+
+#+begin_src python
+  def is_rightangled(a, b, c):
+      return (a**2 + b**2) == c**2
+#+end_src
+
+** 13
+
+#+begin_src sh
+  1.4142135623730951 2.0000000000000004
+  False
+#+end_src
