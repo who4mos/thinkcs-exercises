@@ -2,12 +2,12 @@
 
 This repository contains resolutions for the exercises of the book [[http://www.openbookproject.net/thinkcs/python/][How to Think Like a Computer Scientist]].
 
-- [[* Chapter 1][Chapter 1]]
-- [[* Chapter 2][Chapter 2]]
-- [[* Chapter 3][Chapter 3]]
-- [[* Chapter 4][Chapter 4]]
-- [[* Chapter 5][Chapter 5]]
-- [[* Chapter 6][Chapter 6]]
+- [[*Chapter 1][Chapter 1]]
+- [[*Chapter 2][Chapter 2]]
+- [[*Chapter 3][Chapter 3]]
+- [[*Chapter 4][Chapter 4]]
+- [[*Chapter 5][Chapter 5]]
+- [[*Chapter 6][Chapter 6]]
   
 * Chapter 1
 
