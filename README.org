@@ -881,7 +881,12 @@ A lot of this chapter exercises will use the following functions:
 
 #+begin_src python
   def is_rightangled(a, b, c):
-      return (a**2 + b**2) == c**2
+      if a > b and a > c:
+          return (b ** 2 + c ** 2) == a ** 2
+      elif b > a and b > c:
+          return (a ** 2 + c ** 2) == b ** 2
+      else:
+          return (a**2 + b**2) == c**2
 #+end_src
 
 ** 13
@@ -889,4 +894,306 @@ A lot of this chapter exercises will use the following functions:
 #+begin_src sh
   1.4142135623730951 2.0000000000000004
   False
+#+end_src
+
+* Chapter 6
+
+All of the exercises below should be added to a single file. In that file, you should also add the ~test~ and ~test_suite~ scaffolding functions.
+
+#+begin_src python
+  def test(did_pass):
+      """ Print the result of a test """
+      linenum = sys._getframe(1).f_lineno
+      if did_pass:
+          msg = "Test at line {0} ok".format(linenum)
+      else:
+          msg = "Test at line {0} FAILED".format(linenum)
+
+      print(msg)
+
+      
+  def test_suite():
+      """ Run the suite of tests for code in this module (this file). """
+      test(foo(x) == 420)
+#+end_src
+
+** 1
+
+#+begin_src python
+  def turn_clockwise(point):
+      """ Returns the next point of the parameter in the clockwise direction """
+      if point == 'N':
+          return 'E'
+      elif point == 'E':
+          return 'S'
+      elif point == 'S':
+          return 'W'
+      elif point == 'W':
+          return 'N'
+#+end_src
+
+** 2
+
+#+begin_src python
+  def day_name(dnum):
+      """ Returns the name of the day passed as int, 0 being Sunday and 6 Saturday """
+      if dnum == 0:
+          return "Sunday"
+      elif dnum == 1:
+          return "Monday"
+      elif dnum == 2:
+          return "Tuesday"
+      elif dnum == 3:
+          return "Wednesday"
+      elif dnum == 4:
+          return "Thursday"
+      elif dnum == 5:
+          return "Friday"
+      elif dnum == 6:
+          return "Saturday"
+#+end_src
+
+** 3
+
+#+begin_src python
+  def day_num(dname):
+      """ Returns the number of the day passed as string, Sunday being 0 and Saturday 6 """
+      if dname == "Sunday":
+          return 0
+      elif dname == "Monday":
+          return 1
+      elif dname == "Tuesday":
+          return 2
+      elif dname == "Wednesday":
+          return 3
+      elif dname == "Thursday":
+          return 4
+      elif dname == "Friday":
+          return 5
+      elif dname == "Saturday":
+          return 6
+#+end_src
+
+** 4
+
+#+begin_src python
+  def day_add(dname, delta):
+      """ Returns the day name that will be after delta days after day received """
+      return day_name(day_num(dname) + (delta % 7))
+#+end_src
+
+** 5
+
+#+begin_src python
+  def day_add(dname, delta):
+      """ Returns the day name that will be after delta days after day received """
+      return day_name((day_num(dname) + delta) % 7)
+#+end_src
+
+** 6
+
+#+begin_src python
+  def days_in_month(month):
+      """ Returns the number of days in month """
+      if month == "January":
+          return 31
+      elif month == "February":
+          return 28
+      elif month == "March":
+          return 31
+      elif month == "April":
+          return 30
+      elif month == "May":
+          return 31
+      elif month == "June":
+          return 30
+      elif month == "July":
+          return 31
+      elif month == "August":
+          return 31
+      elif month == "September":
+          return 30
+      elif month == "October":
+          return 31
+      elif month == "November":
+          return 30
+      elif month == "December":
+          return 31
+#+end_src
+
+** 7
+
+#+begin_src python
+  def to_secs(h, m, s):
+      """ Returns the number of seconds in the time passed in hours, minutes and seconds """
+      secs_in_minute = 60
+      secs_in_hour   = secs_in_minute * 60
+      total_secs     = s + m*secs_in_minute + h * secs_in_hour
+      return total_secs  
+#+end_src
+
+** 8
+
+#+begin_src python
+  def to_secs(h, m, s):
+      """ Return the number of seconds in the time passed in hours, minutes and seconds """
+      secs_in_minute = 60
+      secs_in_hour   = secs_in_minute * 60
+      total_secs     = int(s + m*secs_in_minute + h*secs_in_hour)
+
+      return total_secs
+#+end_src
+
+** 9
+
+#+begin_src python
+  def hours_in(s):
+        """ Return number of whole hours in s seconds """
+        secs_in_minute = 60
+        secs_in_hour   = secs_in_minute * 60
+
+        return s // secs_in_hour
+
+  def minutes_in(s):
+        """ Return numbers of whole left over minutes in seconds """
+        secs_in_minute = 60
+        secs_in_hour   = secs_in_minute * 60
+        
+        minutes_left = (s % secs_in_hour) // secs_in_minute
+        return minutes_left
+
+  def seconds_in(s):
+        """ Return numbers of left over seconds """
+        secs_in_minute = 60
+        secs_in_hour   = secs_in_minute * 60
+
+        seconds_left = (s % secs_in_hour) % secs_in_minute
+
+        return seconds_left
+#+end_src
+
+** 10
+
+| test                       | passed?                                  |
+|----------------------------+------------------------------------------|
+| 3 % 4 == 0                 | no, 3 % 4 == 3                           |
+| 3 % 4 == 3                 | yes                                      |
+| 3 / 4 == 0                 | no, 3 / 4 == 0.75                        |
+| 3 // 4 == 0                | yes                                      |
+| 3+4 * 2 == 14              | no, 3 + (4*2) would be 14, 3+4 * 2 == 11 |
+| 4-2+2 == 0                 | no, 4-2+2 == 4                           |
+| len("hello, world!") == 13 | yes                                      |
+
+** 11
+
+#+begin_src python
+  def compare(a, b):
+      """ Returns 1 if a > b, 0 if a == b and -1 if a < b """
+      if a > b:
+          return 1
+      elif a == b:
+          return 0
+      else:
+          return -1
+#+end_src
+
+** 12
+
+#+begin_src python
+  def hypotenuse(a, b):
+      """ Returns the length of hypotenuse of a triangle with sides a, b """
+      return (a**2 + b**2) ** 0.5
+#+end_src
+
+** 13
+
+#+begin_src python
+  def slope(x1, y1, x2, y2):
+      """ Returns the slope of the line through (x1, y1) and (x2, y2) """
+      return (y2 - y1) / (x2 - x1)
+
+  def intercept(x1, y1, x2, y2):
+      """ Returns the y-intercept of the line though (x1, y1) and (x2, y2) """
+      return y1 - slope(x1, y1, x2, y2) * x1
+#+end_src
+
+** 14
+
+#+begin_src python
+  def is_even(n):
+      """ Returns True if n is even, False if odd """
+      return n % 2 == 0
+
+  def test_suite():
+      """ Run the suite of tests for code in this module (this file). """
+      test(is_even(2) == True)
+      test(is_even(3) == False)
+      test(is_even(69) == False)
+      test(is_even(420) == True)
+      test(is_even(-15) == False)
+      test(is_even(-16) == True)
+#+end_src
+
+** 15
+
+#+begin_src python
+  def is_odd(n):
+      """ Returns True if n is odd, False if even """
+      return n % 2 == 1
+
+  def test_suite():
+      """ Run the suite of tests for code in this module (this file). """
+      test(is_odd(2) == False)
+      test(is_odd(3) == True)
+      test(is_odd(420) == False)
+      test(is_odd(69) == True)
+      test(is_odd(-15) == True)
+      test(is_odd(-16) == False)
+#+end_src
+
+#+begin_src python
+  def is_odd(n):
+      """ Returns True if n is odd, False if even """
+      return not is_even(n)
+
+  def test_suite():
+      """ Run the suite of tests for code in this module (this file). """
+      test(is_odd(2) == False)
+      test(is_odd(3) == True)
+      test(is_odd(420) == False)
+      test(is_odd(69) == True)
+      test(is_odd(-15) == True)
+      test(is_odd(-16) == False)
+#+end_src
+
+** 16
+
+#+begin_src python
+  def is_factor(f, n):
+      """ Returns True if f is a factor of n, False otherwise """
+      return n % f == 0
+#+end_src
+
+** 17
+
+#+begin_src python
+  def is_multiple(m, n):
+      """ Returns True if m is multiple of n, False otherwise """
+      return is_factor(n, m)
+#+end_src
+
+** 18
+
+#+begin_src python
+  def f2c(t):
+      """ Return temperature given is Fahrenheit in Celsius, rounded """
+      return round((t - 32) * 5 / 9)  
+#+end_src
+
+** 19
+
+#+begin_src python
+  def c2f(t):
+      """ Return temperature given is Celsius in Fahrenheit, rounded """
+      return round(((9 / 5) * t) + 32)
 #+end_src
