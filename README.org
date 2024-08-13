@@ -529,7 +529,7 @@ A lot of this chapter exercises will use the following functions:
 
 #+begin_src python
   def sum_to(n):
-      """ Returns sum of all numbers up and including n """
+      """ Return the sum of all numbers up and including n """
       result = 0
       for i in range(1, n+1):
           result += i
@@ -928,7 +928,7 @@ All of the exercises below should be added to a single file. In that file, you s
 
 #+begin_src python
   def turn_clockwise(point):
-      """ Returns the next point of the parameter in the clockwise direction """
+      """ Return the next point of the parameter in the clockwise direction """
       if point == 'N':
           return 'E'
       elif point == 'E':
@@ -943,7 +943,7 @@ All of the exercises below should be added to a single file. In that file, you s
 
 #+begin_src python
   def day_name(dnum):
-      """ Returns the name of the day passed as int, 0 being Sunday and 6 Saturday """
+      """ Return the name of the day passed as int, 0 being Sunday and 6 Saturday """
       if dnum == 0:
           return "Sunday"
       elif dnum == 1:
@@ -964,7 +964,7 @@ All of the exercises below should be added to a single file. In that file, you s
 
 #+begin_src python
   def day_num(dname):
-      """ Returns the number of the day passed as string, Sunday being 0 and Saturday 6 """
+      """ Return the number of the day passed as string, Sunday being 0 and Saturday 6 """
       if dname == "Sunday":
           return 0
       elif dname == "Monday":
@@ -1001,7 +1001,7 @@ All of the exercises below should be added to a single file. In that file, you s
 
 #+begin_src python
   def days_in_month(month):
-      """ Returns the number of days in month """
+      """ Return the number of days in month """
       if month == "January":
           return 31
       elif month == "February":
@@ -1032,7 +1032,7 @@ All of the exercises below should be added to a single file. In that file, you s
 
 #+begin_src python
   def to_secs(h, m, s):
-      """ Returns the number of seconds in the time passed in hours, minutes and seconds """
+      """ Return the number of seconds in the time passed in hours, minutes and seconds """
       secs_in_minute = 60
       secs_in_hour   = secs_in_minute * 60
       total_secs     = s + m*secs_in_minute + h * secs_in_hour
@@ -1055,14 +1055,14 @@ All of the exercises below should be added to a single file. In that file, you s
 
 #+begin_src python
   def hours_in(s):
-        """ Return number of whole hours in s seconds """
+        """ Return the number of whole hours in s seconds """
         secs_in_minute = 60
         secs_in_hour   = secs_in_minute * 60
 
         return s // secs_in_hour
 
   def minutes_in(s):
-        """ Return numbers of whole left over minutes in seconds """
+        """ Return the number of whole left over minutes in seconds """
         secs_in_minute = 60
         secs_in_hour   = secs_in_minute * 60
         
@@ -1070,7 +1070,7 @@ All of the exercises below should be added to a single file. In that file, you s
         return minutes_left
 
   def seconds_in(s):
-        """ Return numbers of left over seconds """
+        """ Return the number of left over seconds """
         secs_in_minute = 60
         secs_in_hour   = secs_in_minute * 60
 
@@ -1108,7 +1108,7 @@ All of the exercises below should be added to a single file. In that file, you s
 
 #+begin_src python
   def hypotenuse(a, b):
-      """ Returns the length of hypotenuse of a triangle with sides a, b """
+      """ Return the length of hypotenuse of a triangle with sides a, b """
       return (a**2 + b**2) ** 0.5
 #+end_src
 
@@ -1116,11 +1116,11 @@ All of the exercises below should be added to a single file. In that file, you s
 
 #+begin_src python
   def slope(x1, y1, x2, y2):
-      """ Returns the slope of the line through (x1, y1) and (x2, y2) """
+      """ Return the slope of the line through (x1, y1) and (x2, y2) """
       return (y2 - y1) / (x2 - x1)
 
   def intercept(x1, y1, x2, y2):
-      """ Returns the y-intercept of the line though (x1, y1) and (x2, y2) """
+      """ Return the y-intercept of the line though (x1, y1) and (x2, y2) """
       return y1 - slope(x1, y1, x2, y2) * x1
 #+end_src
 
@@ -1193,7 +1193,7 @@ All of the exercises below should be added to a single file. In that file, you s
 
 #+begin_src python
   def f2c(t):
-      """ Return temperature given is Fahrenheit in Celsius, rounded """
+      """ Return the temperature given is Fahrenheit in Celsius, rounded """
       return round((t - 32) * 5 / 9)  
 #+end_src
 
@@ -1201,6 +1201,6 @@ All of the exercises below should be added to a single file. In that file, you s
 
 #+begin_src python
   def c2f(t):
-      """ Return temperature given is Celsius in Fahrenheit, rounded """
+      """ Return the temperature given is Celsius in Fahrenheit, rounded """
       return round(((9 / 5) * t) + 32)
 #+end_src
