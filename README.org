@@ -8,6 +8,7 @@ This repository contains resolutions for the exercises of the book [[http://www.
 - [[#Chapter-4][Chapter 4]]
 - [[#Chapter-5][Chapter 5]]
 - [[#Chapter-6][Chapter 6]]
+- [[#Chapter 7][Chapter 7]]
   
 * Chapter 1
 
@@ -1203,4 +1204,282 @@ All of the exercises below should be added to a single file. In that file, you s
   def c2f(t):
       """ Return the temperature given is Celsius in Fahrenheit, rounded """
       return round(((9 / 5) * t) + 32)
+#+end_src
+
+* Chapter 7
+
+** 1
+
+#+begin_src python
+  def odd_count(xs):
+      """ Return the count of odd numbers in a list """
+      counter = 0
+      for x in xs:
+          if x % 2 == 1:
+              counter += 1
+
+      return counter
+#+end_src
+
+** 2
+
+#+begin_src python
+  def even_sum(xs):
+      """ Return the sum of even numbers in a list """
+      total = 0
+      for x in xs:
+          if x % 2 == 0:
+              total += x
+
+      return total
+#+end_src
+
+** 3
+
+#+begin_src python
+  def negative_sum(xs):
+      """ Return the sum of negative numbers in a list """
+      total = 0
+      for x in xs:
+          if x < 0:
+              total += x
+
+      return total
+#+end_src
+
+** 4
+
+#+begin_src python
+  def five_long(words):
+      """ Return the count of five long chars words in a list of words """
+      total = 0
+      for word in words:
+          if len(word) == 5:
+              total += 1
+
+      return total
+#+end_src
+
+** 5
+
+#+begin_src python
+  def sum_first_odds(xs):
+      """ Return the sum of the numbers in a list up to, but not including
+      the first even number """
+      total = 0
+      for x in xs:
+          if x % 2 == 0:
+              return total
+          total += x
+
+      return total
+#+end_src
+
+** 6
+
+#+begin_src python
+  def word_count_until_sam(words):
+      """ Return the number of words in a list up to and including the
+      first occurrence of the word "sam" """
+      counter = 0
+      for word in words:
+          if type(word) == str:
+              counter += 1
+              if word == "sam":
+                  return counter
+
+      return counter
+#+end_src
+
+** 7
+
+#+begin_src python
+  def sqrt(n):
+      approx = n / 2.0
+      while True:
+          better = (approx + n/approx) / 2.0
+          print(better)
+          if abs(approx - better) < 0.00001:
+              return better
+          approx = better
+#+end_src
+
+output:
+#+begin_src python
+  7.25
+  5.349137931034482
+  5.011394106532552
+  5.000012953048684
+  5.000000000016778
+  5.0
+#+end_src
+
+** 8
+
+#+begin_src python
+  def print_multiples(n, high):
+      for i in range(1, high+1):
+          print(n * i, end="\t")
+      print()
+
+  def print_mult_table(high):
+      for i in range(1, high+1):
+          print_multiples(i, i)
+
+  # The function calls print_multiples in a way that the number x will show x multiples,
+  # looking like a pyramid
+#+end_src
+
+** 9
+
+#+begin_src python
+  def print_triangular_numbers(n):
+      """ Print the first n triangular numbers """
+      x = 0
+      for i in range(1, n+1):
+          x += i
+          print("{0}\t{1}".format(i, x))
+#+end_src
+
+** 10
+
+#+begin_src python
+  def is_prime(n):
+      """ Returns True if n is prime, False otherwise """
+      if n <= 1:
+          return False
+
+      factors = 0
+      for i in range(1, n//2):
+          if n % i == 0:
+              factors += 1
+
+      return factors == 1
+#+end_src
+
+** 11
+
+#+begin_src python
+  import turtle
+
+  def path(t, pairs):
+      for (angle, sz) in pairs:
+          t.left(angle)
+          t.forward(sz)
+          
+  pirate = turtle.Turtle()
+  wn = turtle.Screen()
+  data = [(160, 20), (-43, 10), (270, 8), (-43, 12)]
+
+  path(pirate, data)
+
+  wn.mainloop()
+#+end_src
+
+** 12
+
+#+begin_src python
+  import turtle
+
+  def path(t, pairs):
+      for (angle, sz) in pairs:
+          t.left(angle)
+          t.forward(sz)
+          
+  t = turtle.Turtle()
+  wn = turtle.Screen()
+  x = 100
+  diag = x*sqrt(2)
+  data = [(45, diag/2), (-90, diag/2), (-135, x), (-90, x), (-135, diag/2), (90, diag/2), (135, x), (-135, diag/2), (-90, diag/2), (-45, x)]
+
+  path(t, data)
+
+  wn.mainloop()
+#+end_src
+
+** 13
+
+To be able to draw only the beggining and ending nodes must have an odd degree, thus figures 3 and 4 cannot be drawn.
+
+** 14
+
+#+begin_src python
+  def num_digits(n):
+      """ Return the number of digits of n """
+      if n == 0:
+          return 1
+
+      counter = 0
+      while n != 0:
+          counter += 1
+          n = int(n / 10)
+
+      return counter  
+#+end_src
+
+** 15
+
+#+begin_src python
+  def num_even_digits(n):
+      """ Return the number of even digits of n """
+      if n == 0:
+          return 1
+
+      counter = 0
+      while n!= 0:
+          digit = n % 10
+          if digit % 2 == 0:
+              counter += 1
+              n //= 10
+
+      return counter
+#+end_src
+
+** 16
+
+#+begin_src python
+  def sum_of_squares(xs):
+      """ Return the sum of the squares of the numbers in a list """
+      total = 0
+      for x in xs:
+          total += x ** 2
+
+      return total
+#+end_src
+
+** 17
+
+#+begin_src python
+  player = draws = cpu = turn = 0
+
+  while True:
+      # player starts every 3rd turn
+      turn += 1
+      if turn % 3 == 0:
+          print("I started")
+          result = play_once(True)
+      else:
+          result = play_once(False)
+
+      # print result
+      if result == -1:
+          player += 1
+          print("I win!")
+      elif result == 1:
+          draws += 1
+          print("Game drawn!")
+      else:
+          cpu +=  1
+          print("You won!")
+
+      # print score
+      print("Player: {0} | CPU: {1} | Draws: {2}".format(player, cpu, draws))
+      # and player winning percentage
+      player_percentage = player / turn
+      print("Player winning percentage (%): {0}".format(player_percentage))
+
+      # asks if user wants to play again, "no" to quit
+      if input("Do you want to play again?\n> ") == "no":
+          print("Goodbye")
+          break
 #+end_src
