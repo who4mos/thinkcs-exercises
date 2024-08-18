@@ -9,6 +9,7 @@ This repository contains resolutions for the exercises of the book [[http://www.
 - [[#Chapter-5][Chapter 5]]
 - [[#Chapter-6][Chapter 6]]
 - [[#Chapter-7][Chapter 7]]
+- [[#Chapter-8][Chapter 8]]
   
 * Chapter 1
 
@@ -1482,4 +1483,222 @@ To be able to draw only the beggining and ending nodes must have an odd degree, 
       if input("Do you want to play again?\n> ") == "no":
           print("Goodbye")
           break
+#+end_src
+
+* Chapter 8
+
+** 1
+
+#+begin_src python
+  print("Python"[1]) # 'y'
+  print("Strings are sequences of characters."[5]) # 'g'
+  print(len("wonderful")) # 9
+  print("Mystery"[:4]) # "Myst"
+  print("p" in "Pineapple") # True
+  print("apple" in "Pineapple") # True
+  print("pear" not in "Pineapple") # True
+  print("apple" > "pineapple") # False
+  print("pineapple" < "Peach") # False
+#+end_src
+
+** 2
+
+#+begin_src python
+  prefixes = "JKLMNOPQ"
+  suffix = "ack"
+
+  for letter in prefixes:
+      if letter == 'O' or letter == 'Q':
+          print(letter + 'u' + suffix)
+      else:
+          print(letter + suffix)
+#+end_src
+
+** 3
+
+#+begin_src python
+  def count_letters(ss, c):
+      """ Return the occurrence count of c in ss """
+      counter = 0
+      for letter in ss:
+          if letter == c:
+              counter += 1
+
+      return counter
+#+end_src
+
+** 4
+
+#+begin_src python
+  def find(s, ch, start=0):
+      """
+      Return the index of first occurrence of ch,
+      if ch is not in the string, returns -1
+      """
+      i = start
+      while i < len(s):
+          if s[i] == ch:
+              return i
+          i += 1
+          
+      return -1
+
+  def count_letters(s, ch):
+      """ Return the occurrence count of c in ss """
+      counter = i = 0
+      while True:
+          x = find(s, ch, i)
+          if x == -1:
+              return counter
+          counter += 1
+          i = x + 1
+#+end_src
+
+** 5
+
+#+begin_src python
+  def words_that_contain_letter(s, ch):
+      """ Print the word count, and how many of that have
+      the letter ch """
+
+      # remove punctuation from string
+      new_s = ''
+      for letter in s:
+          if letter not in string.punctuation:
+              new_s += letter
+
+      # counts words and words that have ch
+      word_count = ch_in_word_count = 0
+      for word in new_s.split():
+          word_count += 1
+          if ch in word:
+              ch_in_word_count += 1
+
+      # print the analysis
+      template = "Your text contains {0} words, of which {1} ({2:.1f}%) contain an '{3}'."
+      ch_percentage = (ch_in_word_count / word_count) * 100
+      print(template.format(word_count, ch_in_word_count, ch_percentage, ch))
+#+end_src
+
+** 6
+
+#+begin_src python
+  def print_mult_row(n, m):
+      """ Prints a row of n*1, n*2, ..., n*m """
+      for i in range(1, m+1):
+          if i == 1:
+              print("{0:>6}".format(n*i), end='')
+          else:
+              print("{0:>4}".format(n*i), end='')
+              print()
+
+  def print_sep(n):
+      """ Prints a separator for a table with n columns """
+      print(end="  :")
+      for i in range(1, 13):
+          ch = '-'
+          if i == 1:
+              print(6*ch, end='')
+          else:
+              print(4*ch, end='')
+              print()
+
+  sz = 12
+
+  print("   ", end='')
+  print_mult_row(1, sz)
+  print_sep(sz)
+  for i in range(1, sz+1):
+      print("{0:>2}:".format(i), end='')
+      print_mult_row(i, sz)
+#+end_src
+
+** 7
+
+#+begin_src python
+  def reverse(s):
+      """ Returns string s reversed """
+      reversed_s = ''
+      for i in range(len(s)-1, -1, -1):
+
+          reversed_s += s[i]
+
+      return reversed_s
+#+end_src
+
+** 8
+
+#+begin_src python
+  def mirror(s):
+      """ Returns string s mirrored """
+      return s + reverse(s)
+#+end_src
+
+** 9
+
+#+begin_src python
+  def remove_letter(ch, s):
+      """ Returns string s without ch """
+      new_s = ''
+      for letter in s:
+          if letter != ch:
+              new_s += letter
+
+      return new_s
+#+end_src
+
+** 10
+
+#+begin_src python
+  def is_palindrome(s):
+      """ Returns True if s is a palindrome, False otherwise """
+      return s == reverse(s)
+#+end_src
+
+** 11
+
+#+begin_src python
+  def count(sub, s):
+      """ Return the number of occurrence of sub in s """
+      counter = 0
+      len_sub = len(sub)
+      i = 0
+      while i+len_sub <= len(s):
+          if sub == s[i:i+len_sub]:
+              counter += 1
+              i += 1
+
+      return counter
+#+end_src
+
+** 12
+
+#+begin_src python
+  def remove(sub, s):
+      """ Returns s without the first occurrence of sub """
+      len_sub = len(sub)
+      i = 0
+      while i+len_sub <= len(s):
+          if sub == s[i:i+len_sub]:
+              return s[:i] + s[i+len_sub:]
+          i += 1
+
+      return s
+#+end_src
+
+** 13
+
+#+begin_src python
+  def remove_all(sub, s):
+      """ Returns s without all occurrences of sub """
+      len_sub = len(sub)
+      i = 0
+      while i+len_sub <= len(s):
+          if sub == s[i:i+len_sub]:
+              s = s[:i] + s[i+len_sub:]
+              i = 0
+              continue
+          i += 1
+
+      return s
 #+end_src
