@@ -10,6 +10,7 @@ This repository contains resolutions for the exercises of the book [[http://www.
 - [[#Chapter-6][Chapter 6]]
 - [[#Chapter-7][Chapter 7]]
 - [[#Chapter-8][Chapter 8]]
+- [[#Chapter-9][Chapter 9]]
   
 * Chapter 1
 
@@ -1702,3 +1703,36 @@ To be able to draw only the beggining and ending nodes must have an odd degree, 
 
       return s
 #+end_src
+
+* Chapter 9
+
+** 1
+
+#+begin_src python
+  def greeting(name):
+      print("Hello, i'm {0}".format(name))
+
+  def greeting_tuple(person):
+      print("Hello, i'm {0} and i'm {1} years old."
+            .format(person[0], person[1]))
+
+  person = ("Mike", 20)
+
+  # function doesn't expect tuple
+  greeting(person)
+  greeting(person[0])
+  # Hello, i'm ('Mike', 20)
+  # Hello, i'm Mike
+
+  # function expect tuple
+  greeting_tuple(person)
+  # Hello, i'm Mike and i'm 20 years old.
+#+end_src
+
+** 2
+
+A tuple is a generalization of a pair.
+
+** 3
+
+A pair is a kind of tuple.
