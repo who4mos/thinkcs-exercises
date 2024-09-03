@@ -12,6 +12,7 @@ This repository contains resolutions for the exercises of the book [[http://www.
 - [[#Chapter-8][Chapter 8]]
 - [[#Chapter-9][Chapter 9]]
 - [[#Chapter-10][Chapter 10]]
+- [[#Chapter-11][Chapter 11]]
   
 * Chapter 1
 
@@ -2211,3 +2212,105 @@ wn.mainloop()
 
   wn.mainloop()
 #+end_src
+
+* Chapter 11
+
+** 1
+
+#+begin_src python
+  list(range(10, 0, -2)) # [10, 8, 6, 4, 2, 0]
+#+end_src
+
+If start < stop and step < 0 the list will be empty.
+
+** 2
+
+#+begin_src python
+  import turtle
+
+  tess = turtle.turtle()
+  alex = tess
+  alex.color("hotpink")
+#+end_src
+
+This snippet creates only one turtle instace. When ~alex = tess~ is evaluated, it makes ~alex~ refers to the same object as ~tess~, so when changing ~alex~ color you're changing ~tess~ color too.
+
+** 3
+
+Before, ~a~ refers to the a list ~[1, 2, 3]~ and ~b~ refers to another list object, with the same elements ~[1, 2, 3]~. Since a and b are not referring to the same object, when ~b[0] = 5~ is executed, ~a~ still the same ~[1, 2, 3]~ and ~b~ changes to ~[5, 2, 3]~.
+
+** 4
+
+#+begin_src python
+  True
+  False
+#+end_src
+
+In the first test, even the values being the same, the two lists are two distinct objects. When ~that = this~ is executed, ~that~ starts to refer to same object.
+
+** 5
+
+#+begin_src python
+  def add_vectors(u, v):
+      """ Returns a list containing the sum of the elements of two lists """
+      new = []
+      for i in range(len(u)):
+          new.append(u[i] + v[i])
+
+      return new
+#+end_src
+
+** 6
+
+#+begin_src python
+  def scalar_mult(s, v):
+      """ Return the scalar multiples of v by s """
+      new = []
+      for i in v:
+          new.append(i*s)
+
+      return new
+#+end_src
+
+** 7
+
+#+begin_src python
+  def dot_product(s, v):
+      """ Return the sum of products of corresponding elements """
+      total = 0
+      for i in range(len(s)):
+          total += s[i] * v[i]
+          
+      return total
+#+end_src
+
+** 8
+
+#+begin_src python
+  def cross_product(u, v):
+      """ Return the cross product of two vectors u and v """
+      c = []
+      c.append(u[1]*v[2] - u[2]*v[1])
+      c.append(u[2]*v[0] - u[0]*v[2])
+      c.append(u[0]*v[1] - u[1]*v[0])
+
+      return c
+#+end_src
+
+** 9
+
+~" ".join(song.split())~ will be equivalent to ~song~ whenever ~song~ doesn't separate words with more than one space. In that cases, when joining the splitted words all spaces will be one space.
+
+** 10
+
+#+begin_src python
+  def replace(s, old, new):
+      """ Replace all occurrencies of 'old' with 'new' in s """
+      # string separated by removing the old substring
+      return new.join(s.split(old))
+#+end_src
+
+** 11
+~x~ and ~y~ refers to same objects as ~a~ and ~b~ respectively, if you alter the first element of ~x~ the first element of ~a~ will be affected. In the function though, we only change the reference of the parameters ~x~ and ~y~, making ~x~ refer to ~b~ (instead of ~a~) and ~y~ refer to ~a~ (instead of ~b~). ~a~ and ~b~ remains the same, referring to the same objects as before.
+
+
