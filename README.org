@@ -13,7 +13,8 @@ This repository contains resolutions for the exercises of the book [[http://www.
 - [[#Chapter-9][Chapter 9]]
 - [[#Chapter-10][Chapter 10]]
 - [[#Chapter-11][Chapter 11]]
-  
+- [[#Chapter-12][Chapter 12]]
+
 * Chapter 1
 
 ** 1
@@ -2311,6 +2312,183 @@ In the first test, even the values being the same, the two lists are two distinc
 #+end_src
 
 ** 11
+
 ~x~ and ~y~ refers to same objects as ~a~ and ~b~ respectively, if you alter the first element of ~x~ the first element of ~a~ will be affected. In the function though, we only change the reference of the parameters ~x~ and ~y~, making ~x~ refer to ~b~ (instead of ~a~) and ~y~ refer to ~a~ (instead of ~b~). ~a~ and ~b~ remains the same, referring to the same objects as before.
 
+* Chapter 12
 
+** 1
+
+*** a
+
+#+begin_src python
+  import calendar
+
+  cal = calendar.TextCalendar()
+
+  cal.pryear(2012)
+#+end_src
+
+First we import the ~calendar~ module, then we create an object of type ~TextCalendar~ and assigned it to ~cal~.
+
+The ~cal.pryear(2012)~ invoke the method ~pryear~ of objects of type ~calendar.TextCalendar~ on ~cal~, which is an instance of a ~calendar.TextCalendar~, with ~2012~ as the parameter. This prints a calendar of the year of 2012.
+
+*** b
+
+We can pass the starter day of the week as a parameter when creating the ~TextCalendar~ object
+
+#+begin_src python
+  cal = calendar.TextCalendar(3)
+#+end_src
+
+*** c
+
+The ~prmonth~ method prints a calendar of the month passed as argument, alongside the year.
+
+#+begin_src python
+  cal.prmonth(2024, 12)
+#+end_src
+
+*** d
+
+#+begin_src python
+  d = calendar.LocaleTextCalendar(6, "SPANISH")
+  d.pryear(2012)
+#+end_src
+
+This snippet actually don't work, it signals a locale error, saying that the locale passed in is unsupported. When passing a actual locale (e.g.: ~en_US.UTF-8~) it prints the calendar in that locales language.
+
+*** e
+
+#+begin_src python
+  print(calendar.isleap(2024))
+#+end_src
+
+The function receives a year (~int~) as parameter and returns a ~bool~, ~True~ if the year is leap, ~False~ otherwise. ~isleap~ is a pure function, not an object's method.
+
+** 2
+
+*** a
+
+56
+
+*** b
+
+The function ~math.ceil~ rounds a number up (the ceiling of the number), the function ~math.floor~ rounds a number down (floor of the number).
+
+*** c
+
+For positive numbers, you can power the number to the power of (1/2).
+
+*** e
+
+~e~ and ~pi~. In the date im reading there is also ~tau~.
+	
+** 3
+
+The ~deepcopy~ function, in contrast with the ~copy~ function, which does a shallow copy of an object, does a /deep copy/ of the object. If a compound object is shallow coppied, inner containers will still refer to the sames objects. In a deep copy, these inner containers will be copied also.
+
+** 4
+
+#+begin_src python
+  # mymodule1.py
+  myage = 69
+  year  = 2024
+
+  # mymodule2.py
+  myage = 0
+  year  = 1955
+
+  # namespace_test.py
+
+  import mymodule1
+  import mymodule2
+
+  print((mymodule2.myage - mymodule1.myage)
+        == (mymodule2.year - mymodule1.year))
+#+end_src
+
+** 5
+
+The modules, i.e.: the imported python files, have the ~__name__~ set to the file name, whithout the ~.py~ extension. The script, i.e.: the python file which the interpreter was called on, have the ~__name__~ object set to ~"__main__"~
+
+The print statement only is executed when running ~mymodule1.py~ directly, not when importing.
+
+** 6
+
+#+begin_quote
+Namespaces are one honking great idea -- let's do more of those!
+#+end_quote
+
+** 7
+
+#+begin_src python
+  def myreplace(old, new, s: str):
+      """ Replace all occurrencies of old with new in s. """
+      no_empty_words = []
+      for word in s.split(old):
+          if word:
+              no_empty_words.append(word)
+  	      
+      return new.join(no_empty_words)
+#+end_src
+
+** 8
+
+#+begin_src python
+  import string
+
+  def cleanword(s):
+      """ Return string s whithout punctuation """
+
+      letters = []
+
+      for char in s:
+          if char not in string.punctuation:
+              letters.append(char)
+
+      return ''.join(letters)
+
+  def has_dashdash(s):
+      """ Return True if s have '--' in it, False otherwise """
+      return "--" in s
+
+  def extract_words(s):
+      """ Returns a list of words in s, without punctuation or double dashes. """
+      no_empty_words = []
+      for word in s.split():
+          if word:
+              no_empty_words.append(word)
+
+      words = []
+      for word in no_empty_words:
+          if has_dashdash(word):
+              words.extend(word.split("--"))
+          else:
+              words.append(cleanword(word).lower())
+
+      return words
+
+  def wordcount(w, l):
+      """ Return the number of occurrencies of w in l. """
+      total = 0
+      for word in l:
+          if word == w:
+              total += 1
+
+      return total
+
+  def wordset(l):
+      """ Returns a list of unique words in l. """
+      return sorted(list(set(l)))
+
+  def longestword(l):
+      """ Returns the lenght of longest word in l. """
+      big = 0
+
+      for word in l:
+          if len(word) > big:
+              big = len(word)
+
+      return big
+#+end_src
