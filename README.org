@@ -14,6 +14,7 @@ This repository contains resolutions for the exercises of the book [[http://www.
 - [[#Chapter-10][Chapter 10]]
 - [[#Chapter-11][Chapter 11]]
 - [[#Chapter-12][Chapter 12]]
+- [[#Chapter-13][Chapter 13]]
 
 * Chapter 1
 
@@ -2491,4 +2492,69 @@ Namespaces are one honking great idea -- let's do more of those!
               big = len(word)
 
       return big
+#+end_src
+
+* Chapter 13
+
+** 1
+
+#+begin_src python
+  fin = open("test.txt")
+  fout = open("reversed_test.txt", 'w')
+
+  inlines = fin.readlines()
+  fout.writelines(reversed(inlines))
+
+  fin.close()
+  fout.close()
+#+end_src
+
+** 2
+
+#+begin_src python
+  f = open("test.txt")
+
+  line = f.readline()
+  while len(line) > 0:
+      if "snake" in line:
+          print(line)
+
+      line = f.readline()
+
+  f.close()
+#+end_src
+
+** 3
+
+#+begin_src python
+  infile = open("test.py")
+  outfile = open("numbered_test.py", 'w')
+
+  line_no = 0
+  line = infile.readline()
+  while len(line) > 0:
+      line_no += 1
+      outfile.write("{:04} {}".format(line_no, line))
+
+      line = infile.readline()
+
+  infile.close()
+  outfile.close
+#+end_src
+
+** 4
+
+#+begin_src python
+  infile = open("numbered_test.py")
+  outfile = open("unnumbered_test.py", 'w')
+
+  line = infile.readline()
+  while len(line) > 0:
+      words = line.split()
+      no_number_line = ' '.join(words[1:]) + '\n'
+      outfile.write(no_number_line)
+      line = infile.readline()
+
+  infile.close()
+  outfile.close
 #+end_src
